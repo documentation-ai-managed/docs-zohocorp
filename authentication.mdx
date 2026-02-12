@@ -1,0 +1,162 @@
+---
+title: Authentication and Permissions
+description: Securely access Zohocorp APIs and resources using authentication methods and manage user permissions effectively.
+---
+
+## Overview
+
+Zohocorp provides secure authentication methods to access APIs and resources. You can use API keys for simple integrations or OAuth 2.0 for user-specific access. Permissions control what data and actions are available based on roles.
+
+<Callout kind="info">
+Review your organization's security policies before generating keys or tokens. Store credentials securely and rotate them regularly.
+</Callout>
+
+## Authentication Methods
+
+Choose the method that fits your use case. API keys work for server-to-server calls, while OAuth 2.0 suits client-side or user-delegated access.
+
+<Tabs>
+  <Tab title="API Key" icon="key">
+
+## Generate an API Key
+
+Follow these steps to create an API key.
+
+<Steps>
+  <Step title="Log In" icon="log-in">
+    Access the Zohocorp dashboard at `https://dashboard.example.com`.
+  </Step>
+  <Step title="Navigate to Settings" icon="settings">
+    Go to **Account > API Keys**.
+  </Step>
+  <Step title="Create Key" icon="plus">
+    Click **Generate New Key** and copy the value.
+  </Step>
+</Steps>
+
+## Usage Example
+
+Pass the API key in the `Authorization` header.
+
+<CodeGroup tabs="JavaScript,cURL">
+  ````javascript
+  const response = await fetch('https://api.example.com/v1/crm/leads', {
+    headers: {
+      'Authorization': `Zoho-oauthtoken YOUR_API_KEY`,
+      'Content-Type': 'application/json'
+    }
+  });
+  ````
+  ````bash
+  curl -X GET 'https://api.example.com/v1/crm/leads' \
+    -H 'Authorization: Zoho-oauthtoken YOUR_API_KEY' \
+    -H 'Content-Type: application/json'
+  ````
+</CodeGroup>
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Format: `Zoho-oauthtoken YOUR_API_KEY`.
+</ParamField>
+
+  </Tab>
+  <Tab title="OAuth 2.0" icon="shield">
+
+## OAuth 2.0 Setup Process
+
+Set up OAuth for delegated access.
+
+<Steps>
+  <Step title="Register App" icon="plus">
+    Visit `https://auth.example.com/apps` and create a new application.
+  </Step>
+  <Step title="Configure Redirect" icon="external-link">
+    Set redirect URI, e.g., `https://yourapp.com/callback`.
+  </Step>
+  <Step title="Get Tokens" icon="key">
+    Use authorization code flow to exchange for access token.
+  </Step>
+</Steps>
+
+## Token Exchange Example
+
+<CodeGroup tabs="JavaScript,Python">
+  ````javascript
+  const tokenResponse = await fetch('https://auth.example.com/oauth/v2/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'authorization_code',
+      client_id: 'YOUR_CLIENT_ID',
+      client_secret: 'YOUR_CLIENT_SECRET',
+      redirect_uri: 'https://yourapp.com/callback',
+      code: 'AUTH_CODE'
+    })
+  });
+  ````
+  ````python
+  import requests
+
+  data = {
+      'grant_type': 'authorization_code',
+      'client_id': 'YOUR_CLIENT_ID',
+      'client_secret': 'YOUR_CLIENT_SECRET',
+      'redirect_uri': 'https://yourapp.com/callback',
+      'code': 'AUTH_CODE'
+  }
+  response = requests.post('https://auth.example.com/oauth/v2/token', data=data)
+  ````
+</CodeGroup>
+
+<ParamField query="scope" param-type="string" required="true">
+  Comma-separated permissions, e.g., `ZohoCRM.modules.leads.READ`.
+</ParamField>
+
+  </Tab>
+</Tabs>
+
+## Scope Definitions for CRM Data
+
+Scopes define access levels for CRM modules.
+
+| Scope Prefix       | Description                  | Example                          |
+|--------------------|------------------------------|----------------------------------|
+| `ZohoCRM.modules` | Module-level access         | `ZohoCRM.modules.leads.ALL`     |
+| `ZohoCRM.settings` | Settings and configuration  | `ZohoCRM.settings.all`          |
+| `ZohoCRM.users`    | User management             | `ZohoCRM.users.READ`            |
+
+<Callout kind="tip">
+Request minimal scopes needed. Use `ALL` sparingly for full access.
+</Callout>
+
+## Role-Based Permissions for Extensions
+
+Assign roles to control extension access.
+
+<Expandable title="Admin Role" default-open="true">
+Admins have full access to create, edit, and delete extensions.
+</Expandable>
+
+<Expandable title="Developer Role">
+Developers can build and test extensions but cannot publish.
+</Expandable>
+
+<Expandable title="Viewer Role">
+Viewers read extension details without modification.
+</Expandable>
+
+## Security Best Practices
+
+<Callout kind="alert">
+Never expose API keys or tokens in client-side code. Use server-side proxies for public apps. Implement token refresh logic to handle expirations.
+</Callout>
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Build your first integration.
+  </Card>
+  <Card title="API Reference" icon="book-open" href="/api-reference">
+    Explore all endpoints.
+  </Card>
+</Columns>

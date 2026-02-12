@@ -1,0 +1,89 @@
+---
+title: Introduction to Zohocorp
+description: Discover Zohocorp, a developer platform for customizing and extending Zoho CRM with APIs, scripts, widgets, and functions.
+---
+
+<Callout kind="info" title="Starter Kit Template">
+  This documentation was generated as a starter kit template based on your brand. Please review and customize the content to accurately reflect your product's features, APIs, and capabilities.
+</Callout>
+
+## Overview
+
+Zohocorp empowers developers to customize and extend Zoho CRM functionality. You can build powerful integrations using robust APIs, create dynamic client scripts, develop reusable widgets, and automate workflows with functions. This platform provides all the tools you need to tailor CRM to your business requirements.
+
+## Key Features
+
+Zohocorp offers a comprehensive suite of developer tools for Zoho CRM customization.
+
+<Columns cols={3}>
+  <Card title="CRM APIs" icon="database" href="/apis">
+    Access comprehensive REST APIs to read, create, update, and delete CRM records. Integrate with external systems seamlessly.
+  </Card>
+  <Card title="Client Scripts" icon="code" href="/client-scripts">
+    Write JavaScript-based scripts that run in the browser to enhance record views, forms, and user interactions.
+  </Card>
+  <Card title="Widgets" icon="package" href="/widgets">
+    Build embeddable components using the CLI for advanced UI customizations and mobile compatibility.
+  </Card>
+  <Card title="Functions" icon="play-circle" href="/functions">
+    Execute server-side Deluge scripts for complex automations, data manipulations, and integrations.
+  </Card>
+</Columns>
+
+<Callout kind="success">
+  These features enable you to create tailored CRM experiences without leaving the Zoho ecosystem.
+</Callout>
+
+## Quick Start
+
+Get up and running with Zohocorp in minutes.
+
+<Steps>
+  <Step title="Sign Up and Get API Key" icon="key">
+    Create a Zohocorp developer account at `https://dashboard.zohocorp.com`. Generate your API key from the developer console.
+
+    <CodeGroup tabs="JavaScript,cURL">
+      ```javascript
+      const API_KEY = 'YOUR_API_KEY';
+      const headers = { Authorization: `Zoho-oauthtoken ${API_KEY}` };
+      ```
+      ```bash
+      export API_KEY='YOUR_API_KEY'
+      curl -H "Authorization: Zoho-oauthtoken $API_KEY" https://api.zohocorp.com/crm/v6/Leads
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Make Your First API Call" icon="zap">
+    Fetch Leads data using the CRM API endpoint.
+  </Step>
+
+  <Step title="Explore Extensions" icon="settings">
+    Dive into client scripts or widgets for UI customizations.
+  </Step>
+</Steps>
+
+## Why Choose Zohocorp?
+
+Zohocorp simplifies CRM development with native integrations, extensive documentation, and community resources. You benefit from scalable APIs handling high volumes, secure authentication, and cross-platform support including mobile.
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Quickstart Guide" icon="rocket" href="/quickstart">
+    Follow the step-by-step guide to build your first integration.
+  </Card>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Learn secure API access methods.
+  </Card>
+  <Card title="Client Scripts Overview" icon="code" href="/client-scripts">
+    Start scripting record-level customizations.
+  </Card>
+  <Card title="Changelog" icon="git-branch" href="/changelog">
+    Stay updated with the latest releases.
+  </Card>
+</Columns>
+
+<Callout kind="tip" title="Ready to build?">
+  Head to the [Quickstart Guide](/quickstart) to create your first CRM integration.
+</Callout>

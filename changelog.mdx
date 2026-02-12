@@ -1,0 +1,138 @@
+---
+title: Changelog
+description: Review the latest updates, new features, and changes in Zohocorp to stay current with platform evolution.
+---
+
+## Recent Updates
+
+<Callout kind="info">
+Stay informed about Zohocorp's evolution. Check this changelog regularly for new features, improvements, and breaking changes that impact your CRM integrations, client scripts, widgets, and functions.
+</Callout>
+
+Track the most significant releases below. Each update includes details on API enhancements, client script events, widget CLI tools, and function adjustments.
+
+<Columns cols={3}>
+  <Card title="v6.1.0" icon="zap" href="#v610">
+    Latest API and widget improvements.
+  </Card>
+  <Card title="v6.0.0" icon="rocket" href="#v600">
+    Major client script event updates.
+  </Card>
+  <Card title="v5.9.0" icon="settings" href="#v590">
+    Function limits and stability fixes.
+  </Card>
+</Columns>
+
+<Update label="2024-10-15" description="v6.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Enhanced v6 API endpoints for CRM modules with better pagination support.
+- New widget CLI commands for faster prototyping and deployment.
+
+## Improvements
+
+- Optimized client script event handling for real-time field updates.
+- Increased function execution limits from `3000ms` to `5000ms` for complex workflows.
+
+## Bug Fixes
+
+- Fixed widget CLI installation issues on Windows environments.
+- Resolved intermittent failures in API batch operations.
+
+</Update>
+
+<Update label="2024-09-20" description="v6.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Introduced advanced client script events like `onFieldChange` and `onRecordSave`.
+- Added support for custom widgets in mobile views.
+
+## Breaking Changes
+
+- Deprecated legacy v5 API endpoints; migrate to v6 for continued support.
+- Updated function sandbox to stricter security policies.
+
+## Bug Fixes
+
+- Corrected widget rendering glitches in embedded iframes.
+- Improved error logging for client script debugging.
+
+</Update>
+
+<Update label="2024-08-10" description="v5.9.0" tags={["bugfix", "improvement"]}>
+
+## Improvements
+
+- Widget CLI now supports TypeScript compilation out-of-the-box.
+- Adjusted function concurrency limits to handle `>100` parallel executions.
+
+## Bug Fixes
+
+- Patched client script memory leaks during long-running sessions.
+- Fixed API rate limiting discrepancies across regions.
+
+</Update>
+
+## Upgrading to the Latest Version
+
+Follow these steps to ensure your Zohocorp integrations remain compatible.
+
+<Steps>
+  <Step title="Review Changes" icon="book-open">
+
+    Scan the updates above for breaking changes relevant to your setup.
+
+  </Step>
+  <Step title="Update Dependencies" icon="download">
+
+    <Tabs>
+      <Tab title="npm" icon="package">
+
+````bash
+npm update zohocorp-sdk@latest
+````
+
+      </Tab>
+      <Tab title="Python" icon="code">
+
+````bash
+pip install --upgrade zohocorp-client
+````
+
+      </Tab>
+    </Tabs>
+
+  </Step>
+  <Step title="Test Integrations" icon="test-tube">
+
+    Run your client scripts and widgets in the sandbox environment.
+
+    <CodeGroup tabs="JavaScript,Deluge">
+````javascript
+// Test API call
+const response = await fetch('https://api.zohocorp.com/v6/crm/leads', {
+  headers: { Authorization: `Zoho-oauthtoken YOUR_TOKEN` }
+});
+````
+````javascript
+// Deluge equivalent
+response = invokeurl [
+  url: "https://api.zohocorp.com/v6/crm/leads",
+  headers: {"Authorization": "Zoho-oauthtoken YOUR_TOKEN"}
+];
+````
+    </CodeGroup>
+
+  </Step>
+  <Step title="Deploy" icon="rocket">
+
+    Push updates to production and monitor for issues.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+Subscribe to our RSS feed or join the Zohocorp community forum for real-time notifications on future releases.
+</Callout>
